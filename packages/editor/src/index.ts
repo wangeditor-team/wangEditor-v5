@@ -10,7 +10,7 @@ import '@wangeditor/basic-modules/css/style.css'
 import '@wangeditor/table-module/css/style.css'
 import '@wangeditor/list-module/css/style.css'
 
-import { Node, Text, Location, Editor } from 'slate'
+import { Node, Text, Location, Editor, Range } from 'slate'
 import {
   IDomEditor,
   createEditor,
@@ -303,6 +303,8 @@ let editor = createEditor(
         match: (editor: IDomEditor, n: Node) => {
           const { selection } = editor
           if (selection == null) return false // 无选区
+
+          if (Range.isCollapsed(selection)) return false
 
           // 对于一些特殊的 element，例如 code，选中文字不应该显示该 hoverbar
           const disableElementKeys = ['code']

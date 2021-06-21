@@ -7,12 +7,11 @@ import { Element } from 'slate'
 import { IModalMenu, IPositionStyle } from '../interface'
 import BaseButton from './BaseButton'
 import Modal from '../panel-and-modal/Modal'
-import { EDITOR_TO_TEXTAREA } from '../../utils/weak-maps'
+import { EDITOR_TO_TEXTAREA, EDITOR_TO_MODAL } from '../../utils/weak-maps'
 import { getEditorInstance } from './index'
 import { getPositionBySelection, getPositionByNode, correctPosition } from '../helpers/position'
 
 class ModalButton extends BaseButton {
-  private modal: Modal | null = null
   menu: IModalMenu
 
   constructor(menu: IModalMenu) {
@@ -45,23 +44,24 @@ class ModalButton extends BaseButton {
   // 显示/隐藏 modal
   private handleModal() {
     const menu = this.menu
+    const editor = getEditorInstance(this)
+    let singleModalInstance = EDITOR_TO_MODAL.get(editor)
 
-    if (this.modal == null) {
+    if (singleModalInstance == null) {
       // 初次创建
       const modal = new Modal(menu.modalWidth)
       this.renderAndShowModal(modal, true)
 
-      // 记录下来，防止重复创建
-      this.modal = modal
+      // 存下来，防止重复创建
+      EDITOR_TO_MODAL.set(editor, modal)
     } else {
       // 不是初次创建
-      const modal = this.modal
-      if (modal.isShow) {
+      if (singleModalInstance.isShow) {
         // 当前处于显示状态，则隐藏
-        modal.hide()
+        singleModalInstance.hide()
       } else {
         // 当前未处于显示状态，则重新渲染内容 ，并显示
-        this.renderAndShowModal(modal, false)
+        this.renderAndShowModal(singleModalInstance, false)
       }
     }
   }

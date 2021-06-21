@@ -9,6 +9,7 @@ import { IDomEditor } from '../editor/dom-editor'
 import TextArea from '../text-area/TextArea'
 import Toolbar from '../menus/bar/Toolbar'
 import HoverBar from '../menus/bar/HoverBar'
+import Modal from '../menus/panel-and-modal/Modal'
 import { IBarItem } from '../menus/bar-item/index'
 import { Key } from './key'
 import { PatchFn } from '../utils/vdom'
@@ -68,3 +69,5 @@ export const CHANGING_NODE_PATH: WeakMap<Editor, Path> = new WeakMap()
 
 // 保存 editor -> selection ，用于还原 editor 选区
 export const EDITOR_TO_SELECTION: WeakMap<Editor, Range> = new WeakMap()
+// 保存 editor -> modal ，用于存储弹窗，保证弹窗实例全局一避免重复创建
+export const EDITOR_TO_MODAL: WeakMap<Editor, Modal> = new WeakMap()
