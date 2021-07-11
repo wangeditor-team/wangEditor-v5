@@ -286,3 +286,10 @@ export function getFirstVoidChild(elem: DOMElement): DOMElement | null {
   // 未找到结果，返回 null
   return null
 }
+
+/**
+ * Determines wether the active element is nested within a shadowRoot
+ */
+export const hasShadowRoot = () => {
+  return !!(window.document.activeElement && window.document.activeElement.shadowRoot)
+}

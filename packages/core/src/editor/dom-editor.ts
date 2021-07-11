@@ -31,7 +31,9 @@ import {
   DOMStaticRange,
   isDOMElement,
   normalizeDOMPoint,
+  hasShadowRoot,
 } from '../utils/dom'
+import { IS_CHROME } from '../utils/ua'
 
 /**
  * 自定义全局 command
@@ -311,14 +313,23 @@ export const DomEditor = {
     }
 
     // Resolve a Slate range from the DOM range.
-    const range = DomEditor.toSlateRange(editor, domRange)
+    const range = DomEditor.toSlateRange(editor, domRange, {
+      exactMatch: false,
+    })
     return range
   },
 
   /**
    * Find a Slate range from a DOM range or selection.
    */
-  toSlateRange(editor: IDomEditor, domRange: DOMRange | DOMStaticRange | DOMSelection): Range {
+  toSlateRange<T extends boolean>(
+    editor: IDomEditor,
+    domRange: DOMRange | DOMStaticRange | DOMSelection,
+    options: {
+      exactMatch: T
+    }
+  ): T extends true ? Range | null : Range {
+    const { exactMatch } = options
     const el = domRange instanceof Selection ? domRange.anchorNode : domRange.startContainer
     let anchorNode
     let anchorOffset
@@ -332,7 +343,17 @@ export const DomEditor = {
         anchorOffset = domRange.anchorOffset
         focusNode = domRange.focusNode
         focusOffset = domRange.focusOffset
-        isCollapsed = domRange.isCollapsed
+        // COMPAT: There's a bug in chrome that always returns `true` for
+        // `isCollapsed` for a Selection that comes from a ShadowRoot.
+        // (2020/08/08)
+        // https://bugs.chromium.org/p/chromium/issues/detail?id=447523
+        if (IS_CHROME && hasShadowRoot()) {
+          isCollapsed =
+            domRange.anchorNode === domRange.focusNode &&
+            domRange.anchorOffset === domRange.focusOffset
+        } else {
+          isCollapsed = domRange.isCollapsed
+        }
       } else {
         anchorNode = domRange.startContainer
         anchorOffset = domRange.startOffset
@@ -346,17 +367,30 @@ export const DomEditor = {
       throw new Error(`Cannot resolve a Slate range from DOM range: ${domRange}`)
     }
 
-    const anchor = DomEditor.toSlatePoint(editor, [anchorNode, anchorOffset])
-    const focus = isCollapsed ? anchor : DomEditor.toSlatePoint(editor, [focusNode, focusOffset])
+    const anchor = DomEditor.toSlatePoint(editor, [anchorNode, anchorOffset], exactMatch)
 
-    return { anchor, focus }
+    if (!anchor) {
+      return null as T extends true ? Range | null : Range
+    }
+
+    const focus = isCollapsed
+      ? anchor
+      : DomEditor.toSlatePoint(editor, [focusNode, focusOffset], exactMatch)
+    if (!focus) {
+      return null as T extends true ? Range | null : Range
+    }
+    return { anchor, focus } as unknown as T extends true ? Range | null : Range
   },
 
   /**
    * Find a Slate point from a DOM selection's `domNode` and `domOffset`.
    */
-  toSlatePoint(editor: IDomEditor, domPoint: DOMPoint): Point {
-    const [nearestNode, nearestOffset] = normalizeDOMPoint(domPoint)
+  toSlatePoint<T extends boolean>(
+    editor: IDomEditor,
+    domPoint: DOMPoint,
+    exactMatch: T
+  ): T extends true ? Point | null : Point {
+    const [nearestNode, nearestOffset] = exactMatch ? domPoint : normalizeDOMPoint(domPoint)
     const parentNode = nearestNode.parentNode as DOMElement
     let textNode: DOMElement | null = null
     let offset = 0
@@ -395,9 +429,18 @@ export const DomEditor = {
         // ancestor, so find it by going down from the nearest void parent.
 
         leafNode = voidNode.querySelector('[data-slate-leaf]')!
-        textNode = leafNode.closest('[data-slate-node="text"]')!
-        domNode = leafNode
-        offset = domNode.textContent!.length
+
+        // COMPAT: In read-only editors the leaf is not rendered.
+        if (!leafNode) {
+          offset = 1
+        } else {
+          textNode = leafNode.closest('[data-slate-node="text"]')!
+          domNode = leafNode
+          offset = domNode.textContent!.length
+          domNode.querySelectorAll('[data-slate-zero-width]').forEach(el => {
+            offset -= el.textContent!.length
+          })
+        }
       }
 
       // COMPAT: If the parent node is a Slate zero-width space, editor is
@@ -415,6 +458,9 @@ export const DomEditor = {
     }
 
     if (!textNode) {
+      if (exactMatch) {
+        return null as T extends true ? Point | null : Point
+      }
       throw new Error(`Cannot resolve a Slate point from DOM point: ${domPoint}`)
     }
 
@@ -423,7 +469,7 @@ export const DomEditor = {
     // first, and then afterwards for the correct `element`. (2017/03/03)
     const slateNode = DomEditor.toSlateNode(editor, textNode!)
     const path = DomEditor.findPath(editor, slateNode)
-    return { path, offset }
+    return { path, offset } as T extends true ? Point | null : Point
   },
 
   getNodeType(node: Node): string {
@@ -510,5 +556,10 @@ export const DomEditor = {
     if (root.getSelection === undefined && el.ownerDocument !== null) return el.ownerDocument
 
     return root
+  },
+
+  hasRange(editor: IDomEditor, range: Range): boolean {
+    const { anchor, focus } = range
+    return Editor.hasPath(editor, anchor.path) && Editor.hasPath(editor, focus.path)
   },
 }

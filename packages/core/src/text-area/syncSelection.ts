@@ -44,12 +44,14 @@ export function editorSelectionToDOM(textarea: TextArea, editor: IDomEditor): vo
   }
 
   // If the DOM selection is in the editor and the editor selection is already correct, we're done.
-  if (
-    hasDomSelection &&
-    hasDomSelectionInEditor &&
-    selection &&
-    Range.equals(DomEditor.toSlateRange(editor, domSelection), selection)
-  ) {
+  if (hasDomSelection && hasDomSelectionInEditor && selection) {
+    const slateRange = DomEditor.toSlateRange(editor, domSelection, {
+      exactMatch: true,
+    })
+    if (slateRange && Range.equals(slateRange, selection)) {
+      return
+    }
+
     let canReturn = true
 
     // 选区在 table 时，需要特殊处理
@@ -75,6 +77,17 @@ export function editorSelectionToDOM(textarea: TextArea, editor: IDomEditor): vo
 
     // 其他情况，就此结束
     if (canReturn) return
+  }
+
+  // when <Editable/> is being controlled through external value
+  // then its children might just change - DOM responds to it on its own
+  // but Slate's value is not being updated through any operation
+  // and thus it doesn't transform selection on its own
+  if (selection && !DomEditor.hasRange(editor, selection)) {
+    editor.selection = DomEditor.toSlateRange(editor, domSelection, {
+      exactMatch: false,
+    })
+    return
   }
 
   // Otherwise the DOM selection is out of sync, so update it.
@@ -156,7 +169,9 @@ export function DOMSelectionToEditor(textarea: TextArea, editor: IDomEditor) {
     hasEditableTarget(editor, focusNode) || isTargetInsideVoid(editor, focusNode)
 
   if (anchorNodeSelectable && focusNodeSelectable) {
-    const range = DomEditor.toSlateRange(editor, domSelection)
+    const range = DomEditor.toSlateRange(editor, domSelection, {
+      exactMatch: false,
+    })
     Transforms.select(editor, range)
   } else {
     Transforms.deselect(editor)
