@@ -13,11 +13,10 @@ function deleteHandler(newEditor: IDomEditor): boolean {
     mode: 'highest', // 最高层级
   })
   if (nodeEntry == null) return false
-
   const n = nodeEntry[0]
   if (!Element.isElement(n)) return false
 
-  if (!Node.string(n) && (n.type === 'numbered-list' || n.type === 'bulleted-list')) {
+  if (!Node.string(n) && checkList(n)) {
     // 当 list 作为 editor 第一个节点且内容为空时
     // 移除 ul ol 的父节点
     Transforms.unwrapNodes(newEditor, {
@@ -72,8 +71,7 @@ function withList<T extends IDomEditor>(editor: T): T {
 
   // 重写 deleteBackward
   newEditor.deleteBackward = unit => {
-    const res = deleteHandler(newEditor)
-    if (res) return // 命中结果，则 return
+    deleteHandler(newEditor)
 
     // 执行默认的删除
     deleteBackward(unit)
