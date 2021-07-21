@@ -3,11 +3,37 @@
  * @author wangfupeng
  */
 
-import { Transforms, Node } from 'slate'
+import { Editor, Transforms, Node, Element } from 'slate'
 import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { checkList } from './helper'
+
+function deleteHandler(newEditor: IDomEditor): boolean {
+  const [nodeEntry] = Editor.nodes(newEditor, {
+    match: n => newEditor.children[0] === n, // editor 第一个节点
+    mode: 'highest', // 最高层级
+  })
+  if (nodeEntry == null) return false
+
+  const n = nodeEntry[0]
+  if (!Element.isElement(n)) return false
+
+  if (!Node.string(n) && (n.type === 'numbered-list' || n.type === 'bulleted-list')) {
+    // 当 list 作为 editor 第一个节点且内容为空时
+    // 移除 ul ol 的父节点
+    Transforms.unwrapNodes(newEditor, {
+      match: n => checkList(n),
+      split: true,
+    })
+    // 这里没有将其节点却换为 paragraph，因为 paragraph plugin 已经做了处理。
+    // Transforms.setNodes(newEditor, {
+    //   type: 'paragraph',
+    // })
+  }
+  return false
+}
 
 function withList<T extends IDomEditor>(editor: T): T {
-  const { insertBreak } = editor
+  const { insertBreak, deleteBackward } = editor
   const newEditor = editor
 
   // 重写 insertBreak
@@ -42,6 +68,15 @@ function withList<T extends IDomEditor>(editor: T): T {
 
     // 其他情况，执行默认的 insertBreak()
     insertBreak()
+  }
+
+  // 重写 deleteBackward
+  newEditor.deleteBackward = unit => {
+    const res = deleteHandler(newEditor)
+    if (res) return // 命中结果，则 return
+
+    // 执行默认的删除
+    deleteBackward(unit)
   }
 
   // 返回 editor ，重要！
