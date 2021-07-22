@@ -23,10 +23,11 @@ function deleteHandler(newEditor: IDomEditor): boolean {
       match: n => checkList(n),
       split: true,
     })
-    // 这里没有将其节点却换为 paragraph，因为 paragraph plugin 已经做了处理。
-    // Transforms.setNodes(newEditor, {
-    //   type: 'paragraph',
-    // })
+    // 转换为 paragraph
+    Transforms.setNodes(newEditor, {
+      type: 'paragraph',
+    })
+    return true
   }
   return false
 }
@@ -71,7 +72,8 @@ function withList<T extends IDomEditor>(editor: T): T {
 
   // 重写 deleteBackward
   newEditor.deleteBackward = unit => {
-    deleteHandler(newEditor)
+    const res = deleteHandler(newEditor)
+    if (res) return // 命中结果，则 return
 
     // 执行默认的删除
     deleteBackward(unit)
