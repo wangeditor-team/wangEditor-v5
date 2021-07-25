@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { Editor, Range, Transforms } from 'slate'
+import { Editor, Range, Transforms, Node, Text, Path } from 'slate'
 import { IDomEditor, DomEditor } from '@wangeditor/core'
 import { LinkElement } from './custom-types'
 
@@ -78,6 +78,34 @@ export function insertLink(editor: IDomEditor, text: string, url: string) {
   // 判断选区是否折叠
   const { selection } = editor
   if (selection == null) return
+  const anchorPath = selection.anchor.path
+  const focusPath = selection.focus.path
+  let newSelection = JSON.parse(JSON.stringify(selection))
+  let anchorNode = Node.get(editor, anchorPath)
+  let focusNode = Node.get(editor, focusPath)
+  // 设置link的时候过滤掉anchor中末尾的image
+  if (Text.isText(anchorNode)) {
+    let parentAnchorPath = Path.parent(anchorPath)
+    anchorNode = Node.get(editor, parentAnchorPath)
+    if (anchorNode.type === 'image') {
+      const len = parentAnchorPath.length - 1
+      parentAnchorPath[len] = parentAnchorPath[len] - 1
+      newSelection.anchor.path = parentAnchorPath
+      Transforms.select(editor, newSelection)
+    }
+  }
+  // 设置link的时候过滤掉focus中末尾的image
+  if (Text.isText(focusNode)) {
+    let parentFocusPath = Path.parent(focusPath)
+    focusNode = Node.get(editor, parentFocusPath)
+    if (focusNode.type === 'image') {
+      const len = parentFocusPath.length - 1
+      parentFocusPath[len] = parentFocusPath[len] + 1
+      newSelection.focus.path = parentFocusPath
+      Transforms.select(editor, newSelection)
+    }
+  }
+
   const isCollapsed = Range.isCollapsed(selection)
 
   // 新建一个 link node
