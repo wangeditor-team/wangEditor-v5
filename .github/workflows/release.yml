@@ -22,12 +22,6 @@ jobs:
         with:
           node-version: 12.x
           registry-url: https://registry.npmjs.org
-          scope: '@wangeditor'
-
-      - name: Config .npmrc 
-        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}    
 
       - name: Install dependencies
         run: yarn run bootstrap
