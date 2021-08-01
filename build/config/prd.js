@@ -11,6 +11,7 @@ import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
 import commonConfig from './common'
 import copy from 'rollup-plugin-copy'
+import path from 'path'
 
 const { input, output = {}, plugins = [], external } = commonConfig
 
@@ -42,8 +43,8 @@ export default {
     terser(), // 压缩 js
     copy({
       targets: [
-        { src: 'src/package.json', dest: 'dist/package.json' },
-        { src: 'src/README.md', dest: 'dist/README.md' },
+        { src: path.resolve(__dirname, './package.json'), dest: 'dist' },
+        { src: path.resolve(__dirname, './README.md'), dest: 'dist' },
       ],
     }),
   ],
