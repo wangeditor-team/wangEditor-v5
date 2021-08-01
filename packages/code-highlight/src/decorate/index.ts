@@ -4,7 +4,7 @@
  */
 
 import { Node, NodeEntry, Range, Text } from 'slate'
-import { DomEditor } from 'wangeditor-ore'
+import { DomEditor } from 'wangeditor-core'
 import { getPrismTokens, getPrismTokenLength } from '../vendor/prism'
 import { CodeElement } from '../custom-types'
 
