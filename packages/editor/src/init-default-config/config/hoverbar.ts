@@ -4,7 +4,7 @@
  */
 
 import { Node, Element, Text, Editor, Range } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 
 const COMMON_HOVERBAR_KEYS = [
   {

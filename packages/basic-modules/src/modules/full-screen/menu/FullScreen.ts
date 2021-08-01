@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IButtonMenu, IDomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor } from 'wangeditor-core'
 import { FULL_SCREEN } from '../../../constants/icon-svg'
 
 class FullScreen implements IButtonMenu {

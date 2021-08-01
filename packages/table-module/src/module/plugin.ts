@@ -4,7 +4,7 @@
  */
 
 import { Editor, Transforms, Point, Element, Descendant } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 
 // table cell 内部的删除处理
 function deleteHandler(newEditor: IDomEditor): boolean {

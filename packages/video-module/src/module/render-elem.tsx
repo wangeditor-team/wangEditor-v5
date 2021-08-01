@@ -5,7 +5,7 @@
 
 import { Element } from 'slate'
 import { jsx, VNode } from 'snabbdom'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 import { VideoElement } from './custom-types'
 
 function renderVideo(elemNode: Element, children: VNode[] | null, editor: IDomEditor): VNode {

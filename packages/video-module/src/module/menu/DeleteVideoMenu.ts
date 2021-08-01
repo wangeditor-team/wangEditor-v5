@@ -4,7 +4,7 @@
  */
 
 import { Transforms } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { TRASH_SVG } from '../../constants/svg'
 
 class DeleteVideoMenu implements IButtonMenu {

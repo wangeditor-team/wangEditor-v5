@@ -4,7 +4,7 @@
  */
 
 import { Transforms } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 import { ImageElement, ImageStyle } from './custom-types'
 
 function check(

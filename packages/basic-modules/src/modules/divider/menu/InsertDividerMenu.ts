@@ -4,7 +4,7 @@
  */
 
 import { Transforms } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { DIVIDER_SVG } from '../../../constants/icon-svg'
 import { DividerElement } from '../custom-types'
 

@@ -4,7 +4,7 @@
  */
 
 import { Editor, Transforms, Range, Path } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { ADD_ROW_SVG } from '../../constants/svg'
 import { TableRowElement, TableCellElement } from '../custom-types'
 

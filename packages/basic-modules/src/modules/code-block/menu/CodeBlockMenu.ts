@@ -4,7 +4,7 @@
  */
 
 import { Editor, Element, Transforms, Node } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { CODE_BLOCK_SVG } from '../../../constants/icon-svg'
 import { CodeElement } from '../custom-types'
 

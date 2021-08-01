@@ -4,7 +4,7 @@
  */
 
 import type { Element } from 'slate'
-import type { IDomEditor } from '@wangeditor/core'
+import type { IDomEditor } from 'wangeditor-core'
 import { VideoElement } from './custom-types'
 
 function videoToHtml(elemNode: Element, childrenHtml: string, editor: IDomEditor): string {

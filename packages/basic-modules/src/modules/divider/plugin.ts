@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 
 function withDivider<T extends IDomEditor>(editor: T): T {
   const { isVoid } = editor

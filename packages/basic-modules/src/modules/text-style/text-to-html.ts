@@ -4,7 +4,7 @@
  */
 
 import { Text } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 import { StyledText } from './custom-types'
 
 export function textToHtml(textNode: Text, textHtml: string, editor: IDomEditor): string {

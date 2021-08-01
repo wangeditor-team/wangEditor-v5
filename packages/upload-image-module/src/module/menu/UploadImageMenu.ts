@@ -4,8 +4,8 @@
  */
 
 import Uppy, { UppyFile } from '@uppy/core'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
-import { insertImageNode } from '@wangeditor/basic-modules'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
+import { insertImageNode } from 'wangeditor-basic-modules'
 import { UPLOAD_IMAGE_SVG } from '../../constants/svg'
 import { genUppy } from '../../vendor/uppy'
 import { isMenuDisabled } from '../helper'

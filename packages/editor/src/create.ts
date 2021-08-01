@@ -13,7 +13,7 @@ import {
   coreCreateEditor,
   coreCreateToolbar,
   Toolbar,
-} from '@wangeditor/core'
+} from 'wangeditor-core'
 
 interface ICreateEditorOption {
   textareaSelector: string | DOMElement

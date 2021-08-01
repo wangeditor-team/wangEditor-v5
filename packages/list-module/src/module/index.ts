@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IModuleConf } from '@wangeditor/core'
+import { IModuleConf } from 'wangeditor-core'
 import { renderBulletedListConf, renderNumberedListConf, renderListItemConf } from './render-elem'
 import { bulletedToHtmlConf, numberedToHtmlConf, listItemToHtmlConf } from './elem-to-html'
 import { bulletedListMenuConf, numberedListMenuConf } from './menu/index'

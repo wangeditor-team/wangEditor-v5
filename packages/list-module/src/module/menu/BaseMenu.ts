@@ -4,7 +4,7 @@
  */
 
 import { Editor, Node, Transforms } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { checkList } from '../helper'
 // import { ListItemElement, NumberedListElement, BulletedListElement } from '../custom-types'
 

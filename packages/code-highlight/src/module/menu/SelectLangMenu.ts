@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Element } from 'slate'
-import { ISelectMenu, IDomEditor, IOption, DomEditor } from '@wangeditor/core'
+import { ISelectMenu, IDomEditor, IOption, DomEditor } from 'wangeditor-core'
 import { JS_SVG } from '../../constants/svg'
 import { CodeElement } from '../../custom-types'
 

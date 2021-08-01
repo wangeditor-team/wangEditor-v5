@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 import BaseMenu from './BaseMenu'
 import { INDENT_RIGHT_SVG } from '../../../constants/icon-svg'
 

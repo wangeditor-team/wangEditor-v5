@@ -27,7 +27,7 @@ import {
   registerTextStyleToHtmlHandler,
   registerTextToHtmlHandler,
   registerElemToHtmlConf,
-} from '@wangeditor/core'
+} from 'wangeditor-core'
 
 type PluginType = <T extends IDomEditor>(editor: T) => T
 

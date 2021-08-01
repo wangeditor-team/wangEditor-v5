@@ -4,7 +4,7 @@
  */
 
 import { Editor, Element, Transforms, Node, Text } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 
 function deleteHandler(newEditor: IDomEditor): boolean {
   const [nodeEntry] = Editor.nodes(newEditor, {
