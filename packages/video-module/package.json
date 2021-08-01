@@ -46,5 +46,6 @@
     "slate": "^0.63.0",
     "snabbdom": "^3.0.1",
     "wangeditor-core": "^0.2.0"
-  }
+  },
+  "gitHead": "c9d8e490e57db49e28cf26bd0d3c368d2733acb2"
 }
