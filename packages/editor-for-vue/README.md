@@ -12,4 +12,4 @@
 
 ------
 
-Vue3 组件 `@wangeditor/editor-for-vue@next` 待开发
+Vue3 组件 `wangeditor-editor-for-vue@next` 待开发

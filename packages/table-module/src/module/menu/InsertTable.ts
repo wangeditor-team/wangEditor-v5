@@ -4,7 +4,7 @@
  */
 
 import { Editor, Transforms, Range, Node } from 'slate'
-import { IDropPanelMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDropPanelMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import $, { Dom7Array } from '../../utils/dom'
 import { genRandomStr } from '../../utils/util'
 import { TABLE_SVG } from '../../constants/svg'

@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IButtonMenu, IDomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor } from 'wangeditor-core'
 import { REDO_SVG } from '../../../constants/icon-svg'
 
 class RedoMenu implements IButtonMenu {

@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IModuleConf } from '@wangeditor/core'
+import { IModuleConf } from 'wangeditor-core'
 import { renderTextStyle } from './text-style'
 import { textToHtml } from './text-to-html'
 import {

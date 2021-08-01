@@ -43,8 +43,8 @@
   "peerDependencies": {
     "@uppy/core": "^1.19.1",
     "@uppy/xhr-upload": "^1.7.4",
-    "@wangeditor/basic-modules": "^0.0.1",
-    "@wangeditor/core": "^0.0.1",
+    "wangeditor-basic-modules": "^0.2.0",
+    "wangeditor-core": "^0.2.0",
     "dom7": "^3.0.0",
     "is-hotkey": "^0.2.0",
     "lodash-es": "^4.17.21",

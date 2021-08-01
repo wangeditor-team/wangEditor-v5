@@ -4,7 +4,7 @@
  */
 
 import { Editor, Node, Element, Transforms } from 'slate'
-import { ISelectMenu, IDomEditor, DomEditor, IOption } from '@wangeditor/core'
+import { ISelectMenu, IDomEditor, DomEditor, IOption } from 'wangeditor-core'
 import { LINE_HEIGHT_SVG } from '../../../constants/icon-svg'
 import { LineHeightElement } from '../custom-types'
 

@@ -4,7 +4,7 @@
  */
 
 import { Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 import { genTag } from './helper'
 
 function genElemToHtmlFn(type: string) {

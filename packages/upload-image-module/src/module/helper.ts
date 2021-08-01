@@ -4,7 +4,7 @@
  */
 
 import { Range, Editor } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 
 /**
  * 判断菜单是否要 disabled

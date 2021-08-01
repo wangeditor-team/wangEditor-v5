@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { EXTERNAL_SVG } from '../../../constants/icon-svg'
 import { ImageElement } from '../custom-types'
 

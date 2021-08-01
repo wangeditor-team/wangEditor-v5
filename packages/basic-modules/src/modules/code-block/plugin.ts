@@ -4,7 +4,7 @@
  */
 
 import { Editor, Transforms, Node } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 
 function withCodeBlock<T extends IDomEditor>(editor: T): T {
   const { insertBreak, normalizeNode, insertData } = editor

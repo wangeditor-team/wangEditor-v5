@@ -2,9 +2,8 @@
  * @description helper
  * @author wangfupeng
  */
-
-import { Editor, Node } from 'slate'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { Editor } from 'slate'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 
 export function isMenuDisabled(editor: IDomEditor, mark?: string): boolean {
   if (editor.selection == null) return true

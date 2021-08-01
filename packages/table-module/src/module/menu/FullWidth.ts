@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Range } from 'slate'
-import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
+import { IButtonMenu, IDomEditor, DomEditor } from 'wangeditor-core'
 import { FULL_WIDTH_SVG } from '../../constants/svg'
 import { TableCellElement, TableRowElement, TableElement } from '../custom-types'
 

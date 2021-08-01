@@ -10,7 +10,7 @@ import {
   DomEditor,
   genModalInputElems,
   genModalButtonElems,
-} from '@wangeditor/core'
+} from 'wangeditor-core'
 import $, { Dom7Array } from '../../utils/dom'
 import { genRandomStr } from '../../utils/util'
 import { VIDEO_SVG } from '../../constants/svg'

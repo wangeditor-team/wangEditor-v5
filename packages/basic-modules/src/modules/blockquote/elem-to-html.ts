@@ -4,7 +4,7 @@
  */
 
 import { Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 
 function quoteToHtml(elem: Element, childrenHtml: string, editor: IDomEditor): string {
   return `<blockquote>${childrenHtml}</blockquote>`

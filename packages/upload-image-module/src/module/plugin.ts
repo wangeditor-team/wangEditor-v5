@@ -3,9 +3,9 @@
  * @author wangfupeng
  */
 
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 import Uppy, { UppyFile } from '@uppy/core'
-import { insertImageNode } from '@wangeditor/basic-modules'
+import { insertImageNode } from 'wangeditor-basic-modules'
 import { genUppy } from '../vendor/uppy'
 import { isMenuDisabled } from './helper'
 import { IUploadConfig } from '../vendor/uppy/interface'

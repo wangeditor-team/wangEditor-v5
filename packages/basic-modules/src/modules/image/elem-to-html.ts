@@ -4,7 +4,7 @@
  */
 
 import { Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor } from 'wangeditor-core'
 import { ImageElement } from './custom-types'
 
 function imageToHtml(elemNode: Element, childrenHtml: string, editor: IDomEditor): string {

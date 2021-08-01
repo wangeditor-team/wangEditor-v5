@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { IModuleConf } from '@wangeditor/core'
+import { IModuleConf } from 'wangeditor-core'
 import { renderHeader1Conf, renderHeader2Conf, renderHeader3Conf } from './render-elem'
 import {
   HeaderSelectMenuConf,

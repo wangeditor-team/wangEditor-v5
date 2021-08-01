@@ -6,7 +6,7 @@
 import { throttle } from 'lodash-es'
 import { Element as SlateElement, Transforms } from 'slate'
 import { jsx, VNode } from 'snabbdom'
-import { IDomEditor, DomEditor } from '@wangeditor/core'
+import { IDomEditor, DomEditor } from 'wangeditor-core'
 import $, { Dom7Array } from '../../utils/dom'
 import { ImageElement } from './custom-types'
 

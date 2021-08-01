@@ -4,7 +4,7 @@
  */
 
 import './assets/index.less'
-import '@wangeditor/core/dist/css/style.css'
+import 'wangeditor-core/dist/css/style.css'
 
 // 兼容浏览器
 import './utils/browser-polyfill'
@@ -20,7 +20,7 @@ import Boot from './Boot'
 export { Boot }
 
 // 导出 core API 和接口（注意，此处按需导出，不可直接用 `*` ）
-export { DomEditor, IDomEditor, IEditorConfig, IToolbarConfig, Toolbar } from '@wangeditor/core'
+export { DomEditor, IDomEditor, IEditorConfig, IToolbarConfig, Toolbar } from 'wangeditor-core'
 
 // 导出 slate API 和接口 （需重命名，加 `Slate` 前缀）
 export {

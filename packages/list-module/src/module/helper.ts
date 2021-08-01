@@ -4,7 +4,7 @@
  */
 
 import { Node } from 'slate'
-import { DomEditor } from '@wangeditor/core'
+import { DomEditor } from 'wangeditor-core'
 
 /**
  * 根据 node.type 获取 html tag
