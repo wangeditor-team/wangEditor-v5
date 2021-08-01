@@ -1,6 +1,6 @@
 {
   "name": "wangeditor-editor-cattle",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "editor entry",
   "author": "wangfupeng1988 <wangfupeng1988@163.com>",
   "homepage": "https://github.com/wangeditor-team/we-2021#readme",
@@ -55,7 +55,7 @@
     "wangeditor-list-module": "^0.2.1",
     "wangeditor-table-module": "^0.2.1",
     "wangeditor-upload-image-module": "^0.2.1",
-    "wangeditor-video-module": "^0.2.5"
+    "wangeditor-video-module": "^0.2.6"
   },
   "gitHead": "c9d8e490e57db49e28cf26bd0d3c368d2733acb2"
 }
