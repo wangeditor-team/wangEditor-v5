@@ -1,6 +1,6 @@
 {
   "name": "wangeditor-editor-for-vue",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "wangEditor editor-for-vue module",
   "author": "wangfupeng1988 <wangfupeng1988@163.com>",
   "homepage": "https://github.com/wangeditor-team/we-2021#readme",
@@ -42,8 +42,8 @@
     "url": "https://github.com/wangeditor-team/we-2021/issues"
   },
   "peerDependencies": {
-    "wangeditor-editor-cattle": "^0.2.0",
-    "vue": "^2.6.14"
+    "vue": "^2.6.14",
+    "wangeditor-editor-cattle": "^0.2.0"
   },
   "devDependencies": {
     "@types/event-emitter": "^0.3.3",
