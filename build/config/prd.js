@@ -10,6 +10,7 @@ import cssnano from 'cssnano'
 import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
 import commonConfig from './common'
+import copy from 'rollup-plugin-copy'
 
 const { input, output = {}, plugins = [], external } = commonConfig
 
@@ -39,5 +40,11 @@ export default {
       extensions: ['.ts', '.tsx'],
     }),
     terser(), // 压缩 js
+    copy({
+      targets: [
+        { src: 'src/package.json', dest: 'dist/package.json' },
+        { src: 'src/README.md', dest: 'dist/README.md' },
+      ],
+    }),
   ],
 }
