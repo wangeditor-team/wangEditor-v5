@@ -4,7 +4,7 @@
  */
 
 import { Element } from 'slate'
-import { IDomEditor } from 'wangeditor-re'
+import { IDomEditor } from 'wangeditor-core'
 import { CodeElement } from '../custom-types'
 
 function codeToHtml(elem: Element, childrenHtml: string, editor: IDomEditor): string {
