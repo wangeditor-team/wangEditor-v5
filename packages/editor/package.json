@@ -1,6 +1,6 @@
 {
   "name": "wangeditor-editor-cattle",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "editor entry",
   "author": "wangfupeng1988 <wangfupeng1988@163.com>",
   "homepage": "https://github.com/wangeditor-team/we-2021#readme",
@@ -49,8 +49,8 @@
     "lodash-es": "^4.17.21",
     "slate": "^0.63.0",
     "snabbdom": "^3.0.1",
-    "wangeditor-basic-modules": "^0.2.2",
-    "wangeditor-code-highlight": "^0.2.2",
+    "wangeditor-basic-modules": "^0.2.3",
+    "wangeditor-code-highlight": "^0.2.3",
     "wangeditor-core": "^0.2.0",
     "wangeditor-list-module": "^0.2.1",
     "wangeditor-table-module": "^0.2.1",
