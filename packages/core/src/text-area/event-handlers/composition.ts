@@ -3,13 +3,14 @@
  * @author wangfupeng
  */
 
-import { Editor, Range } from 'slate'
+import { Editor, Range, Element } from 'slate'
 import { IDomEditor } from '../../editor/interface'
 import { DomEditor } from '../../editor/dom-editor'
 import TextArea from '../TextArea'
 import { hasEditableTarget } from '../helpers'
-import { IS_SAFARI, IS_FIREFOX_LEGACY, IS_CHROME } from '../../utils/ua'
+import { IS_SAFARI } from '../../utils/ua'
 import { DOMNode } from '../../utils/dom'
+import { getMatchValue } from '../../schema'
 
 const EDITOR_TO_TEXT: WeakMap<IDomEditor, string> = new WeakMap()
 const EDITOR_TO_START_CONTAINER: WeakMap<IDomEditor, DOMNode> = new WeakMap()
@@ -40,6 +41,7 @@ export function handleCompositionStart(e: Event, textarea: TextArea, editor: IDo
     // 记录下 dom range startContainer
     EDITOR_TO_START_CONTAINER.set(editor, startContainer)
   }
+  textarea.isComposing = true
 }
 
 /**
@@ -69,6 +71,22 @@ export function handleCompositionEnd(e: Event, textarea: TextArea, editor: IDomE
   const { selection } = editor
   if (selection == null) return
 
+  // 在中文输入法下，浏览器的默认行为会使一些dom产生不可逆的变化
+  // 比如在 Safari 中 url 后面输入，初始是 a > span > spans
+  // 输入后变成 span > span > a
+  // 因此需要设置新的 key 来强刷整行
+  const start = Range.isBackward(selection) ? selection.focus : selection.anchor
+  const [paragraph] = Editor.node(editor, [start.path[0]])
+
+  for (let i = 0; i < start.path.length; i++) {
+    const [node] = Editor.node(editor, start.path.slice(0, i + 1))
+
+    if (Element.isElement(node) && getMatchValue(node.type, 'refresh')) {
+      DomEditor.setNewKey(paragraph)
+      break
+    }
+  }
+
   const { data } = event
 
   // 检查 maxLength
@@ -84,14 +102,9 @@ export function handleCompositionEnd(e: Event, textarea: TextArea, editor: IDomE
   // aren't correct and never fire the "insertFromComposition"
   // type that we need. So instead, insert whenever a composition
   // ends since it will already have been committed to the DOM.
-  if (!IS_SAFARI && !IS_FIREFOX_LEGACY && data) {
-    Editor.insertText(editor, data)
-  }
 
-  // insertText 之后，要清理可能暴露的 text 节点
-  // 例如 chrome 在链接后面，输入拼音，就会出现有暴露出来的 text node
-  if (IS_CHROME) {
-    DomEditor.cleanExposedTexNodeInSelectionBlock(editor)
+  if (data) {
+    Editor.insertText(editor, data)
   }
 
   // 检查拼音输入是否夸 DOM 节点了，解决 we-2021/issues/47

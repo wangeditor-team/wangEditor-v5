@@ -19,6 +19,12 @@ const link: Partial<IModuleConf> = {
   elemsToHtml: [linkToHtmlConf],
   menus: [insertLinkMenuConf, updateLinkMenuConf, unLinkMenuConf, viewLinkMenuConf],
   editorPlugin: withLink,
+  schema: {
+    match: /link/,
+    rules: {
+      refresh: true,
+    },
+  },
 }
 
 export default link

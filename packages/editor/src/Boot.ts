@@ -27,6 +27,8 @@ import {
   registerTextStyleToHtmlHandler,
   registerTextToHtmlHandler,
   registerElemToHtmlConf,
+  ISchema,
+  registerSchema,
 } from '@wangeditor/core'
 
 type PluginType = <T extends IDomEditor>(editor: T) => T
@@ -103,6 +105,10 @@ class Boot {
   // 注册 textStyleToHtml
   static registerTextStyleToHtml(fn: TextStyleToHtmlFnType) {
     registerTextStyleToHtmlHandler(fn)
+  }
+
+  static registerSchema(schema: ISchema) {
+    registerSchema(schema)
   }
 }
 

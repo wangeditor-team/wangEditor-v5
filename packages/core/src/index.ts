@@ -9,6 +9,7 @@ import { RenderTextStyleFnType, IRenderElemConf } from './formats/index'
 import { TextStyleToHtmlFnType, TextToHtmlFnType, IElemToHtmlConf } from './to-html/index'
 import { IRegisterMenuConf } from './menus/index'
 import { IDomEditor } from './editor/interface'
+import { ISchema } from './schema'
 
 // 创建
 export * from './create/index'
@@ -29,6 +30,8 @@ export * from './to-html/index'
 // menu 的接口、注册、方法等
 export * from './menus/index'
 
+export * from './schema'
+
 export interface IModuleConf {
   // 注册菜单
   menus: Array<IRegisterMenuConf>
@@ -44,4 +47,6 @@ export interface IModuleConf {
 
   // 注册插件
   editorPlugin: <T extends IDomEditor>(editor: T) => T
+
+  schema: ISchema
 }

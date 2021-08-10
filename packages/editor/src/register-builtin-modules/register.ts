@@ -15,6 +15,7 @@ function registerModule(module: Partial<IModuleConf>) {
     textToHtml,
     textStyleToHtml,
     editorPlugin,
+    schema,
   } = module
 
   if (menus) {
@@ -37,6 +38,9 @@ function registerModule(module: Partial<IModuleConf>) {
   }
   if (editorPlugin) {
     Boot.registerPlugin(editorPlugin)
+  }
+  if (schema) {
+    Boot.registerSchema(schema)
   }
 }
 
