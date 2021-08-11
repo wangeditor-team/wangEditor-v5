@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import type { Element } from 'slate'
+import { Element } from 'slate'
 import { jsx, VNode } from 'snabbdom'
 import { IDomEditor, DomEditor } from 'wangeditor-core'
 import { VideoElement } from './custom-types'
