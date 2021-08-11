@@ -38,7 +38,7 @@ class ClearStyleMenu implements IButtonMenu {
     for (const nodeEntry of nodeEntries) {
       // 单个 text node
       const n = nodeEntry[0]
-      removeMarks(editor, n)
+      removeMarks(editor, n as Node)
     }
   }
 }

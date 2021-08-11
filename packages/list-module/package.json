@@ -45,6 +45,6 @@
     "is-hotkey": "^0.2.0",
     "slate": "^0.63.0",
     "snabbdom": "^3.0.1",
-    "wangeditor-core": "^0.2.0"
+    "wangeditor-core": "^0.3.0"
   }
 }
