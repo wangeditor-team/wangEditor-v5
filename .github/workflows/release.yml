@@ -33,7 +33,8 @@ jobs:
         run: yarn prerelease
 
       - name: Publish npm
-        run: yarn run release:publish
+        run: cd packages/video-module
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
