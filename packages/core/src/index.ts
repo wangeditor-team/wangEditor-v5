@@ -32,6 +32,9 @@ export * from './menus/index'
 // upload
 export * from './upload/index'
 
+// placeholder 操作
+export * from './text-area/place-holder'
+
 export interface IModuleConf {
   // 注册菜单
   menus: Array<IRegisterMenuConf>

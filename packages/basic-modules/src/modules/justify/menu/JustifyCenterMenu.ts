@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { IDomEditor, handlePlaceholderStyle } from '@wangeditor/core'
 import BaseMenu from './BaseMenu'
 import { JUSTIFY_CENTER_SVG } from '../../../constants/icon-svg'
 
@@ -20,6 +20,8 @@ class JustifyCenterMenu extends BaseMenu {
       },
       { match: n => Element.isElement(n) }
     )
+
+    handlePlaceholderStyle(editor, 'textAlign', 'center')
   }
 }
 

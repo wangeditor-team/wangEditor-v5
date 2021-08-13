@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { handlePlaceholderStyle, IDomEditor } from '@wangeditor/core'
 import BaseMenu from './BaseMenu'
 import { JUSTIFY_RIGHT_SVG } from '../../../constants/icon-svg'
 
@@ -20,6 +20,8 @@ class JustifyRightMenu extends BaseMenu {
       },
       { match: n => Element.isElement(n) }
     )
+
+    handlePlaceholderStyle(editor, 'textAlign', 'right')
   }
 }
 

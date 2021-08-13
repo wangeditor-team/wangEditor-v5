@@ -4,7 +4,7 @@
  */
 
 import { Transforms, Element } from 'slate'
-import { IDomEditor } from '@wangeditor/core'
+import { handlePlaceholderStyle, IDomEditor } from '@wangeditor/core'
 import BaseMenu from './BaseMenu'
 import { INDENT_LEFT_SVG } from '../../../constants/icon-svg'
 import { IndentElement } from '../custom-types'
@@ -40,6 +40,8 @@ class DecreaseIndentMenu extends BaseMenu {
       },
       { match: n => Element.isElement(n) }
     )
+
+    handlePlaceholderStyle(editor, 'paddingLeft', `${newNum}px`)
   }
 }
 

@@ -39,4 +39,15 @@ function handlePlaceholder(textarea: TextArea, editor: IDomEditor) {
   }
 }
 
+/**
+ * 处理 placeholder 位置
+ * @param editor editor
+ * @param attribute css attribute
+ * @param value css value
+ */
+export function handlePlaceholderStyle(editor: IDomEditor, attribute: string, value: string) {
+  const { $placeholder } = DomEditor.getTextarea(editor)
+  $placeholder?.css(attribute, value)
+}
+
 export default handlePlaceholder
