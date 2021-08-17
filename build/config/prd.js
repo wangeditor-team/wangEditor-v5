@@ -10,8 +10,8 @@ import cssnano from 'cssnano'
 import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
 import commonConfig from './common'
-import copy from 'rollup-plugin-copy'
-import path from 'path'
+// import copy from 'rollup-plugin-copy'
+// import path from 'path'
 import { extensions } from './common'
 
 const { input, output = {}, plugins = [], external } = commonConfig
@@ -41,14 +41,14 @@ const finalPlugins = [
 
 // 发布包的时候需要用到 package.json 文件，但是单元测试添加后报错，所以需要特殊处理下
 if (!isBuildForTest) {
-  plugins.push(
-    copy({
-      targets: [
-        { src: path.resolve(__dirname, './package.json'), dest: 'dist' },
-        { src: path.resolve(__dirname, './README.md'), dest: 'dist' },
-      ],
-    })
-  )
+  // plugins.push(
+  //   copy({
+  //     targets: [
+  //       { src: path.resolve(__dirname, './package.json'), dest: 'dist' },
+  //       { src: path.resolve(__dirname, './README.md'), dest: 'dist' },
+  //     ],
+  //   })
+  // )
 }
 
 export default {
