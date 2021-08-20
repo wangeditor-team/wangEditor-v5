@@ -8,7 +8,7 @@ import toArray from 'lodash.toarray'
 import { Editor, Node, Element, Path, Point, Range, Ancestor, Text } from 'slate'
 import { IDomEditor } from './interface'
 import { Key } from '../utils/key'
-import type TextArea from '../text-area/TextArea'
+import TextArea from '../text-area/TextArea'
 import Toolbar from '../menus/bar/Toolbar'
 import HoverBar from '../menus/bar/HoverBar'
 import {
