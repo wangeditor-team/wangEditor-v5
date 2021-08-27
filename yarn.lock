@@ -5212,7 +5212,7 @@ cz-customizable@^6.3.0:
 
 d@1, d@^1.0.1:
   version "1.0.1"
-  resolved "http://npm-registry.yy.com/d/download/d-1.0.1.tgz#8698095372d58dbee346ffd0c7093f99f8f9eb5a"
+  resolved "https://registry.npmjs.org/d/download/d-1.0.1.tgz#8698095372d58dbee346ffd0c7093f99f8f9eb5a"
   integrity sha1-hpgJU3LVjb7jRv/Qxwk/mfj561o=
   dependencies:
     es5-ext "^0.10.50"
@@ -5733,7 +5733,7 @@ es-to-primitive@^1.2.1:
 
 es5-ext@^0.10.35, es5-ext@^0.10.50, es5-ext@~0.10.14:
   version "0.10.53"
-  resolved "http://npm-registry.yy.com/es5-ext/download/es5-ext-0.10.53.tgz#93c5a3acfdbef275220ad72644ad02ee18368de1"
+  resolved "https://registry.npmjs.org/es5-ext/download/es5-ext-0.10.53.tgz#93c5a3acfdbef275220ad72644ad02ee18368de1"
   integrity sha1-k8WjrP2+8nUiCtcmRK0C7hg2jeE=
   dependencies:
     es6-iterator "~2.0.3"
@@ -5742,7 +5742,7 @@ es5-ext@^0.10.35, es5-ext@^0.10.50, es5-ext@~0.10.14:
 
 es6-iterator@~2.0.3:
   version "2.0.3"
-  resolved "http://npm-registry.yy.com/es6-iterator/download/es6-iterator-2.0.3.tgz#a7de889141a05a94b0854403b2d0a0fbfa98f3b7"
+  resolved "https://registry.npmjs.org/es6-iterator/download/es6-iterator-2.0.3.tgz#a7de889141a05a94b0854403b2d0a0fbfa98f3b7"
   integrity sha1-p96IkUGgWpSwhUQDstCg+/qY87c=
   dependencies:
     d "1"
@@ -5763,7 +5763,7 @@ es6-promisify@^5.0.0:
 
 es6-symbol@^3.1.1, es6-symbol@~3.1.3:
   version "3.1.3"
-  resolved "http://npm-registry.yy.com/es6-symbol/download/es6-symbol-3.1.3.tgz#bad5d3c1bcdac28269f4cb331e431c78ac705d18"
+  resolved "https://registry.npmjs.org/es6-symbol/download/es6-symbol-3.1.3.tgz#bad5d3c1bcdac28269f4cb331e431c78ac705d18"
   integrity sha1-utXTwbzawoJp9MszHkMceKxwXRg=
   dependencies:
     d "^1.0.1"
@@ -5955,7 +5955,7 @@ esutils@^2.0.2:
 
 event-emitter@^0.3.5:
   version "0.3.5"
-  resolved "http://npm-registry.yy.com/event-emitter/download/event-emitter-0.3.5.tgz#df8c69eef1647923c7157b9ce83840610b02cc39"
+  resolved "https://registry.npmjs.org/event-emitter/download/event-emitter-0.3.5.tgz#df8c69eef1647923c7157b9ce83840610b02cc39"
   integrity sha1-34xp7vFkeSPHFXuc6DhAYQsCzDk=
   dependencies:
     d "1"
@@ -6061,7 +6061,7 @@ expect@^27.0.6:
 
 ext@^1.1.2:
   version "1.4.0"
-  resolved "http://npm-registry.yy.com/ext/download/ext-1.4.0.tgz#89ae7a07158f79d35517882904324077e4379244"
+  resolved "https://registry.npmjs.org/ext/download/ext-1.4.0.tgz#89ae7a07158f79d35517882904324077e4379244"
   integrity sha1-ia56BxWPedNVF4gpBDJAd+Q3kkQ=
   dependencies:
     type "^2.0.0"
@@ -9362,7 +9362,7 @@ neo-async@^2.6.0:
 
 next-tick@~1.0.0:
   version "1.0.0"
-  resolved "http://npm-registry.yy.com/next-tick/download/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
+  resolved "https://registry.npmjs.org/next-tick/download/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 nice-try@^1.0.4:
@@ -9698,7 +9698,7 @@ onetime@^5.1.0, onetime@^5.1.2:
 
 open@^7.4.2:
   version "7.4.2"
-  resolved "http://npm-registry.yy.com/open/download/open-7.4.2.tgz#b8147e26dcf3e426316c730089fd71edd29c2321"
+  resolved "https://registry.npmjs.org/open/download/open-7.4.2.tgz#b8147e26dcf3e426316c730089fd71edd29c2321"
   integrity sha1-uBR+Jtzz5CYxbHMAif1x7dKcIyE=
   dependencies:
     is-docker "^2.0.0"
@@ -11562,7 +11562,7 @@ rollup-plugin-typescript2@^0.30.0:
 
 rollup-plugin-visualizer@^5.5.0:
   version "5.5.1"
-  resolved "http://npm-registry.yy.com/rollup-plugin-visualizer/download/rollup-plugin-visualizer-5.5.1.tgz#cba4eac48a2e3237cd172413d33976be64e54abe"
+  resolved "https://registry.npmjs.org/rollup-plugin-visualizer/download/rollup-plugin-visualizer-5.5.1.tgz#cba4eac48a2e3237cd172413d33976be64e54abe"
   integrity sha1-y6TqxIouMjfNFyQT0zl2vmTlSr4=
   dependencies:
     nanoid "^3.1.22"
@@ -12717,7 +12717,7 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
 
 tslib@^2.3.0:
   version "2.3.0"
-  resolved "http://npm-registry.yy.com/tslib/download/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  resolved "https://registry.npmjs.org/tslib/download/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha1-gDuM2rPhK6WBpMpByIObuw2ssJ4=
 
 tsutils@^3.17.1, tsutils@^3.21.0:
@@ -12790,12 +12790,12 @@ type-fest@^0.8.1:
 
 type@^1.0.1:
   version "1.2.0"
-  resolved "http://npm-registry.yy.com/type/download/type-1.2.0.tgz#848dd7698dafa3e54a6c479e759c4bc3f18847a0"
+  resolved "https://registry.npmjs.org/type/download/type-1.2.0.tgz#848dd7698dafa3e54a6c479e759c4bc3f18847a0"
   integrity sha1-hI3XaY2vo+VKbEeedZxLw/GIR6A=
 
 type@^2.0.0:
   version "2.5.0"
-  resolved "http://npm-registry.yy.com/type/download/type-2.5.0.tgz#0a2e78c2e77907b252abe5f298c1b01c63f0db3d"
+  resolved "https://registry.npmjs.org/type/download/type-2.5.0.tgz#0a2e78c2e77907b252abe5f298c1b01c63f0db3d"
   integrity sha1-Ci54wud5B7JSq+XymMGwHGPw2z0=
 
 typedarray-to-buffer@^3.1.5:
