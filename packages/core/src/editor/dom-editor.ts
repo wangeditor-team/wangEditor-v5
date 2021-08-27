@@ -135,7 +135,8 @@ export const DomEditor = {
     // ShadowRoot; other browsers still implement it on the Document
     // interface. (2020/08/08)
     // https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot#Properties
-    if (root.getSelection === undefined && el.ownerDocument !== null) return el.ownerDocument
+    if ((root as any).getSelection === undefined && el.ownerDocument !== null)
+      return el.ownerDocument
 
     return root
   },
