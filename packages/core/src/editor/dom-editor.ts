@@ -282,7 +282,7 @@ export const DomEditor = {
     // For each leaf, we need to isolate its content, which means filtering
     // to its direct text and zero-width spans. (We have to filter out any
     // other siblings that may have been rendered alongside them.)
-    const selector = `[data-slate-string], [data-slate-zero-width]`
+    const selector = `[data-slate-string], [data-slate-zero-width], [data-slate-placeholder]`
     const texts = Array.from(el.querySelectorAll(selector))
     let start = 0
 
@@ -476,7 +476,7 @@ export const DomEditor = {
 
     if (parentNode) {
       const voidNode = parentNode.closest('[data-slate-void="true"]')
-      let leafNode = parentNode.closest('[data-slate-leaf]')
+      let leafNode = parentNode.closest('[data-slate-leaf], [data-slate-placeholder]')
       let domNode: DOMElement | null = null
 
       // Calculate how far into the text node the `nearestNode` is, so that we

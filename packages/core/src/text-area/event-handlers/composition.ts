@@ -51,8 +51,8 @@ export function handleCompositionStart(e: Event, textarea: TextArea, editor: IDo
  */
 export function handleCompositionUpdate(event: Event, textarea: TextArea, editor: IDomEditor) {
   if (!hasEditableTarget(editor, event.target)) return
-
   textarea.isComposing = true
+  editor.emit('change')
 }
 
 /**

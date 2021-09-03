@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { Descendant } from 'slate'
+import { Descendant, BaseRange } from 'slate'
 import { StyledText } from './basic-modules/src/modules/text-style/custom-types'
 import { ColorText } from './basic-modules/src/modules/color/custom-types'
 import { FontSizeAndFamilyText } from './basic-modules/src/modules/font-size-family/custom-types'
@@ -76,5 +76,9 @@ declare module 'slate' {
 
     // 扩展 Element
     Element: CustomElement
+
+    Range: BaseRange & {
+      placeholder?: string
+    }
   }
 }

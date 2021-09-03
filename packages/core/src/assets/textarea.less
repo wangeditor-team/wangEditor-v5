@@ -40,6 +40,23 @@
   }
 }
 
+[data-slate-node="text"] {
+  line-height: inherit;
+}
+
+[data-slate-placeholder] {
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  max-width: calc(100% - 20px);
+  display: block;
+  opacity: 0.333;
+  user-select: none;
+  text-decoration: none;
+  line-height: inherit;
+  font-size: inherit;
+}
+
 .w-e-text-placeholder {
   color: #D4D4D4;
   position: absolute;
