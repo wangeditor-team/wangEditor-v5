@@ -46,7 +46,7 @@ function renderText(textNode: SlateText, parent: Ancestor, editor: IDomEditor): 
 
   // 生成 leaves vnode
   const leavesVnode = leaves.map((leafNode, index) => {
-    // 生成 placeholder leafNode
+    // 生成 placeholder 的 leafNode
     if (leafNode[PLACEHOLDER_SYMBOL]) {
       return (
         <span data-slate-placeholder={true} contenteditable={false}>
