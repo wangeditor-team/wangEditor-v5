@@ -30,7 +30,10 @@ class IncreaseIndentMenu extends BaseMenu {
       {
         indent: `${newNum}px`,
       },
-      { match: n => Element.isElement(n) }
+      {
+        match: n => Element.isElement(n),
+        mode: 'highest',
+      }
     )
   }
 }

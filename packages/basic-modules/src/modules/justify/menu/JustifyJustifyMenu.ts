@@ -3,8 +3,8 @@
  * @author wangfupeng
  */
 
-import { Transforms, Element } from 'slate'
-import { IDomEditor, t } from '@wangeditor/core'
+import { Transforms, Element, NodeEntry, Editor } from 'slate'
+import { DomEditor, IDomEditor, t } from '@wangeditor/core'
 import BaseMenu from './BaseMenu'
 import { JUSTIFY_JUSTIFY_SVG } from '../../../constants/icon-svg'
 
@@ -13,12 +13,39 @@ class JustifyJustifyMenu extends BaseMenu {
   readonly iconSvg = JUSTIFY_JUSTIFY_SVG
 
   exec(editor: IDomEditor, value: string | boolean): void {
+    const above = Editor.above(editor) as NodeEntry<Element>
+    const aboveType = above?.[0].type
+    const selectedTextNode = DomEditor.getSelectedTextNode(editor)
+    let setNodeMode: 'highest' | 'lowest' | undefined = 'highest'
+
+    // table 图文下单元格
+    if (aboveType === 'table-row') {
+      const parentNodePath = DomEditor.findPath(editor, selectedTextNode)
+      Transforms.select(editor, {
+        path: parentNodePath,
+        offset: 0,
+      })
+      return this.exec(editor, value)
+    }
+    // table 单元格
+    if (aboveType === 'table-cell') setNodeMode = 'lowest'
+    // table 多个单元格同时选中
+    if (
+      aboveType === 'table' ||
+      DomEditor.getParentsNodes(editor, selectedTextNode)[0]?.type === 'table-cell'
+    ) {
+      setNodeMode = undefined
+    }
+
     Transforms.setNodes(
       editor,
       {
         textAlign: 'justify',
       },
-      { match: n => Element.isElement(n) }
+      {
+        match: n => Element.isElement(n),
+        mode: setNodeMode,
+      }
     )
   }
 }

@@ -38,7 +38,10 @@ class DecreaseIndentMenu extends BaseMenu {
       {
         indent: newNum === 0 ? null : `${newNum}px`,
       },
-      { match: n => Element.isElement(n) }
+      {
+        match: n => Element.isElement(n),
+        mode: 'highest',
+      }
     )
   }
 }
