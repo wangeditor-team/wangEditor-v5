@@ -8,7 +8,7 @@ import { IDomEditor } from '@wangeditor/core'
 import { VideoElement } from './custom-types'
 
 function videoToHtml(elemNode: Element, childrenHtml?: string, editor?: IDomEditor): string {
-  const { src = '' } = elemNode as VideoElement
+  const { src = '', poster = '' } = elemNode as VideoElement
   let res = '<div class="wangeditor-video-container">\n'
 
   if (src.trim().indexOf('<iframe') === 0) {
@@ -16,7 +16,7 @@ function videoToHtml(elemNode: Element, childrenHtml?: string, editor?: IDomEdit
     res += src
   } else {
     // 其他，mp4 等 url 格式
-    res += `<video controls="true"><source src="${src}" type="video/mp4"/></video>`
+    res += `<video controls="true" poster="${poster}"><source src="${src}" type="video/mp4"/></video>`
   }
   res += '\n</div>'
 
