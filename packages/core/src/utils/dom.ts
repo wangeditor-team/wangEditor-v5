@@ -338,6 +338,9 @@ export function walkTextNodes(
   for (let nodes = elem.childNodes, i = nodes.length; i--; ) {
     const node = nodes[i]
     const nodeType = node.nodeType
+    if (node instanceof HTMLElement && node.dataset.slateVoid === 'true') {
+      continue
+    }
     if (nodeType == 3) {
       // 匹配到 text node ，执行函数
       handler(node, elem)
