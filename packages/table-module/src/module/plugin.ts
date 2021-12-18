@@ -88,7 +88,7 @@ function withTable<T extends IDomEditor>(editor: T): T {
 
       let next = Editor.next(editor) as NodeEntry<SlateElement> | undefined
       if (next) {
-        if (next[0]?.text) {
+        if (next[0] && (next[0] as any).text) {
           // 多个单元格同时选中按 tab 导致错位修复
           next = Editor.above(editor, { at: next[1] }) ?? next
         }
@@ -149,7 +149,7 @@ function withTable<T extends IDomEditor>(editor: T): T {
     // --------------------- table 后面必须跟一个 p header blockquote（否则后面无法继续输入文字） ---------------------
     const nextNode = topLevelNodes[path[0] + 1] || {}
     if (SlateElement.isElement(nextNode)) {
-      const { type: nextNodeType = '' } = nextNode
+      const { type: nextNodeType = '' } = nextNode as any
       if (
         nextNodeType !== 'paragraph' &&
         nextNodeType !== 'blockquote' &&
@@ -215,9 +215,13 @@ function withTable<T extends IDomEditor>(editor: T): T {
       cells.forEach((cellNode, i) => {
         if (!SlateElement.isElement(cellNode)) return
 
-        if (cellNode.type !== 'table-cell') {
+        if ((cellNode as any).type !== 'table-cell') {
           const cellPath = rowPath.concat(i) // cell path
-          Transforms.setNodes(newEditor, { type: 'table-cell' }, { at: cellPath })
+          Transforms.setNodes(
+            newEditor,
+            { type: 'table-cell', children: [{ text: '' }] },
+            { at: cellPath }
+          )
         }
       })
       // table row 修复结束
@@ -293,7 +297,7 @@ function withTable<T extends IDomEditor>(editor: T): T {
     $trList.forEach(tr => {
       let rowText = tr.textContent || ''
       rowText = rowText.replace(/\r\n|\r|\n/g, ' ')
-      newEditor.insertNode({ type: 'paragraph', children: [{ text: rowText }] })
+      newEditor.insertNode({ type: 'paragraph', children: [{ text: rowText }] } as any)
     })
   }
 

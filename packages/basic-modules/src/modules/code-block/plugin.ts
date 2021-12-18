@@ -3,14 +3,14 @@
  * @author wangfupeng
  */
 
-import { Editor, Transforms, Node as SlateNode } from 'slate'
+import { Editor, Transforms, Node as SlateNode, Element as SlateElement } from 'slate'
 import { IDomEditor, DomEditor } from '@wangeditor/core'
 
 function genEmptyP() {
   return { type: 'paragraph', children: [{ text: '' }] }
 }
 
-function getLastTextLineBeforeSelection(codeNode: Node, editor: IDomEditor): string {
+function getLastTextLineBeforeSelection(codeNode: SlateNode, editor: IDomEditor): string {
   const selection = editor.selection
   if (selection == null) return ''
 
@@ -57,7 +57,9 @@ function withCodeBlock<T extends IDomEditor>(editor: T): T {
 
     // -------------- code node 不能是顶层，否则替换为 p --------------
     if (type === 'code' && path.length <= 1) {
-      Transforms.setNodes(newEditor, { type: 'paragraph' }, { at: path })
+      Transforms.setNodes(newEditor, { type: 'paragraph', children: [] } as SlateElement, {
+        at: path,
+      })
     }
 
     if (type === 'pre') {
@@ -82,9 +84,11 @@ function withCodeBlock<T extends IDomEditor>(editor: T): T {
       }
 
       // -------------- pre 下面必须是 code --------------
-      if (DomEditor.getNodeType(node.children[0]) !== 'code') {
+      if (DomEditor.getNodeType((node as SlateElement).children[0]) !== 'code') {
         Transforms.unwrapNodes(newEditor)
-        Transforms.setNodes(newEditor, { type: 'paragraph' }, { mode: 'highest' })
+        Transforms.setNodes(newEditor, { type: 'paragraph', children: [] } as SlateElement, {
+          mode: 'highest',
+        })
       }
     }
 
@@ -130,7 +134,7 @@ function withCodeBlock<T extends IDomEditor>(editor: T): T {
           children: [{ text }],
         },
       ],
-    })
+    } as any)
 
     // 插入 p ，跳出 code 内部
     Transforms.insertNodes(newEditor, genEmptyP(), {

@@ -28,7 +28,8 @@ function deleteHandler(newEditor: IDomEditor): boolean {
     // 转换为 paragraph
     Transforms.setNodes(newEditor, {
       type: 'paragraph',
-    })
+      children: [],
+    } as SlateElement)
     return true
   }
   return false
@@ -96,7 +97,7 @@ function withList<T extends IDomEditor>(editor: T): T {
       const text = child.textContent
       if (!text) return
 
-      children.push({ type: 'list-item', children: [{ text }] })
+      children.push({ type: 'list-item', children: [{ text }] } as SlateElement)
     })
 
     if (children.length === 0) return
@@ -104,7 +105,7 @@ function withList<T extends IDomEditor>(editor: T): T {
     insertNode({
       type: tag === 'ol' ? 'numbered-list' : 'bulleted-list',
       children,
-    })
+    } as SlateElement)
 
     // 插入 p ，跳出 list 内部
     Transforms.insertNodes(newEditor, EMPTY_P, {

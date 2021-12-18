@@ -3,7 +3,7 @@
  * @author wangfupeng
  */
 
-import { Editor, Node, Transforms } from 'slate'
+import { Editor, Node, Transforms, Element } from 'slate'
 import { IButtonMenu, IDomEditor, DomEditor } from '@wangeditor/core'
 import { checkList } from '../helper'
 // import { ListItemElement, NumberedListElement, BulletedListElement } from '../custom-types'
@@ -35,7 +35,7 @@ abstract class BaseMenu implements IButtonMenu {
     const notMatch = selectedElems.some((elem: Node) => {
       if (Editor.isVoid(editor, elem) && Editor.isBlock(editor, elem)) return true
 
-      const { type } = elem
+      const { type } = elem as any
       if (['pre', 'code', 'table'].includes(type)) return true
     })
     if (notMatch) return true
@@ -69,7 +69,8 @@ abstract class BaseMenu implements IButtonMenu {
     // 设置当前节点 type
     Transforms.setNodes(editor, {
       type: active ? 'paragraph' : 'list-item',
-    })
+      children: [],
+    } as Element)
 
     const listNode = { type, children: [] }
     if (!active) {
