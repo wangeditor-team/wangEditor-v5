@@ -11,9 +11,12 @@ const EMPTY_P = { type: 'paragraph', children: [{ text: '' }] }
 
 function deleteHandler(newEditor: IDomEditor): boolean {
   const [nodeEntry] = Editor.nodes(newEditor, {
-    match: n => newEditor.children[0] === n, // editor 第一个节点
+    match: n => {
+      return newEditor.children[0] === n // editor 第一个节点
+    },
     mode: 'highest', // 最高层级
   })
+  console.log(nodeEntry)
   if (nodeEntry == null) return false
   const n = nodeEntry[0]
   if (!SlateElement.isElement(n)) return false
