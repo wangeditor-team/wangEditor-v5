@@ -12,11 +12,12 @@ const EMPTY_P = { type: 'paragraph', children: [{ text: '' }] }
 function deleteHandler(newEditor: IDomEditor): boolean {
   const [nodeEntry] = Editor.nodes(newEditor, {
     match: n => {
-      return newEditor.children[0] === n // editor 第一个节点
+      // 如果是list 的情况，为了保证远点节点被删除，首先要保证他是一个bulleted-list 类型，在判断他的第一个子节点，是否有内容，如果没有，说明需要删除
+      // 那么就通过筛选
+      return n.type === 'bulleted-list' && n.children[0] && !n.children[0].children[0].text || newEditor.children[0] === n // editor 第一个节点
     },
     mode: 'highest', // 最高层级
   })
-  console.log(nodeEntry)
   if (nodeEntry == null) return false
   const n = nodeEntry[0]
   if (!SlateElement.isElement(n)) return false
