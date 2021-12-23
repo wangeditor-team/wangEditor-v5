@@ -25,3 +25,17 @@ export function checkList(n: Node): boolean {
   const type = DomEditor.getNodeType(n)
   return ['bulleted-list', 'numbered-list'].includes(type)
 }
+/**
+ * 判断node.type 是否是第一个并且list 是否没有内容
+ * @param n 
+ * @returns 
+ */
+export function checkFristList(n: Node): boolean {
+
+  if (checkList(n)) {
+    var childList = n.children
+    if (childList.length === 1)
+      return !childList[0].children[0].text
+  }
+  return false
+}
