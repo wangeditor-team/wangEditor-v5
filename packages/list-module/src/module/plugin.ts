@@ -5,14 +5,14 @@
 
 import { Editor, Transforms, Node as SlateNode, Element as SlateElement } from 'slate'
 import { IDomEditor, DomEditor } from '@wangeditor/core'
-import { checkList, checkFristList } from './helper'
+import { checkList, checkEmptyList } from './helper'
 
 const EMPTY_P = { type: 'paragraph', children: [{ text: '' }] }
 
 function deleteHandler(newEditor: IDomEditor): boolean {
   const [nodeEntry] = Editor.nodes(newEditor, {
     match: n => {
-      return checkFristList(n) || newEditor.children[0] === n // editor 第一个节点
+      return checkEmptyList(n) || newEditor.children[0] === n // editor 第一个节点
     },
     mode: 'highest', // 最高层级
   })

@@ -30,7 +30,7 @@ export function checkList(n: Node): boolean {
  * @param n 
  * @returns 
  */
-export function checkFristList(n: Node): boolean {
+export function checkEmptyList(n: Node): boolean {
 
   if (checkList(n)) {
     var childList = n.children
