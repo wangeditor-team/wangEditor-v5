@@ -10,7 +10,7 @@ import TextArea from '../TextArea'
 import { hasEditableTarget } from '../helpers'
 import { IS_SAFARI, IS_CHROME, IS_FIREFOX } from '../../utils/ua'
 import { DOMNode } from '../../utils/dom'
-import { hidePlaceholder } from '../place-holder'
+import { usePlaceholder } from '../place-holder'
 
 const EDITOR_TO_TEXT: WeakMap<IDomEditor, string> = new WeakMap()
 const EDITOR_TO_START_CONTAINER: WeakMap<IDomEditor, DOMNode> = new WeakMap()
@@ -44,7 +44,7 @@ export function handleCompositionStart(e: Event, textarea: TextArea, editor: IDo
   textarea.isComposing = true
 
   // 隐藏 placeholder
-  hidePlaceholder(textarea, editor)
+  usePlaceholder(textarea, editor, false)
 }
 
 /**
@@ -98,7 +98,11 @@ export function handleCompositionEnd(e: Event, textarea: TextArea, editor: IDomE
   }
 
   const { data } = event
-  if (!data) return
+  if (!data) {
+    // 显示 placeholder
+    usePlaceholder(textarea, editor, true)
+    return
+  }
 
   // 检查 maxLength -【注意】这里只处理拼音输入的 maxLength 限制。其他限制，在插件 with-max-length.ts 中处理
   const { maxLength } = editor.getConfig()
