@@ -55,11 +55,10 @@ describe('editor DOM API', () => {
   it('destroy', done => {
     const editor = createEditor()
     expect(editor.isDestroyed).toBeFalsy()
-
+    editor.destroy()
     setTimeout(() => {
-      editor.destroy()
       expect(editor.isDestroyed).toBeTruthy()
       done()
-    })
+    }, 200)
   })
 })

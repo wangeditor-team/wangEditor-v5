@@ -4,6 +4,7 @@
  */
 
 import { Node, Editor, Transforms } from 'slate'
+import debounce from 'lodash.debounce'
 import { DomEditor } from '../dom-editor'
 import { IDomEditor } from '../..'
 import $, { Dom7Array } from '../../utils/dom'
@@ -78,7 +79,7 @@ export const withDOM = <T extends Editor>(editor: T) => {
   }
 
   // destroy
-  e.destroy = () => {
+  e.destroy = debounce(() => {
     // 销毁相关实例（会销毁 DOM）
     const textarea = DomEditor.getTextarea(e)
     textarea.destroy()
@@ -104,7 +105,7 @@ export const withDOM = <T extends Editor>(editor: T) => {
 
     // 触发自定义事件
     e.emit('destroyed')
-  }
+  }, 200)
 
   // scroll to elem
   e.scrollToElem = (id: string) => {

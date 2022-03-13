@@ -144,6 +144,6 @@ describe('editor config', () => {
     setTimeout(() => {
       expect(fn).toHaveBeenCalledWith(editor)
       done()
-    }, 20)
+    }, 220)
   })
 })
